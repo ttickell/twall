@@ -1,0 +1,6 @@
+.env
+/twall
+labels.json
+/.build/
+*.xcodeproj
+.DS_Store
