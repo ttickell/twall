@@ -4,14 +4,14 @@ import UserNotifications
 @main
 struct TwallApp: App {
     @State private var appState = AppState()
-    @State private var showSettings = !AppState.hasCredentials
+    @State private var showOnboarding = !AppState.hasCredentials
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(appState)
-                .sheet(isPresented: $showSettings) {
-                    SettingsView()
+                .sheet(isPresented: $showOnboarding) {
+                    OnboardingView()
                         .environment(appState)
                 }
                 .onAppear {
@@ -20,6 +20,7 @@ struct TwallApp: App {
                     }
                 }
         }
+        .defaultSize(width: 900, height: 600)
         .windowResizability(.contentMinSize)
         .commands {
             CommandGroup(replacing: .newItem) {}

@@ -21,6 +21,7 @@ struct ContentView: View {
             messageDetail
         }
         .task { await state.setup() }
+        .toolbar { toolbarContent }
         .alert("Error", isPresented: Binding<Bool>(
             get: { state.error != nil },
             set: { if !$0 { state.error = nil } }
@@ -28,6 +29,27 @@ struct ContentView: View {
             Button("OK") { state.error = nil }
         } message: {
             Text(state.error ?? "")
+        }
+    }
+
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem {
+            Button(action: { Task { await state.refresh() } }) {
+                Label("Refresh", systemImage: "arrow.clockwise")
+            }
+            .disabled(state.isRefreshing)
+        }
+        ToolbarItem {
+            Button(action: { state.markAllRead() }) {
+                Label("Mark All Read", systemImage: "checkmark.circle")
+            }
+            .disabled(state.unreadSIDs.isEmpty)
+        }
+        ToolbarItem {
+            SettingsLink {
+                Label("Settings", systemImage: "gearshape")
+            }
         }
     }
 

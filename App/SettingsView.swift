@@ -1,4 +1,5 @@
 import SwiftUI
+import TwallCore
 
 struct SettingsView: View {
     @Environment(AppState.self) private var state
@@ -6,45 +7,44 @@ struct SettingsView: View {
     @State private var token: String = ""
     @State private var saveError: String?
     @State private var saved = false
-    @State private var showLabelEditor = false
 
     var body: some View {
+        TabView {
+            accountTab
+                .tabItem { Label("Account", systemImage: "key.fill") }
+
+            labelsTab
+                .tabItem { Label("Labels", systemImage: "tag.fill") }
+        }
+        .frame(width: 460, height: 300)
+        .onAppear { load() }
+    }
+
+    @ViewBuilder
+    private var accountTab: some View {
         Form {
-            Section("Twilio Credentials") {
-                SecureField("Account SID", text: $sid)
-                SecureField("Auth Token", text: $token)
+            SecureField("Account SID", text: $sid)
+            SecureField("Auth Token", text: $token)
 
-                HStack {
-                    if let err = saveError {
-                        Text(err).foregroundStyle(.red)
-                    }
-                    Spacer()
-                    if saved {
-                        Text("Saved").foregroundStyle(.green)
-                    }
-                    Button("Save to Keychain") { save() }
+            HStack {
+                if let err = saveError {
+                    Text(err).foregroundStyle(.red).font(.caption)
                 }
-            }
-
-            Section("Labels") {
-                Button("Edit Labels...") { showLabelEditor = true }
-                    .sheet(isPresented: $showLabelEditor) {
-                        LabelEditorView()
-                    }
-            }
-
-            Section("Actions") {
-                Button("Refresh Now") {
-                    Task { await state.refresh() }
+                Spacer()
+                if saved {
+                    Text("Saved").foregroundStyle(.green)
                 }
-                Button("Mark All Read") {
-                    state.markAllRead()
-                }
+                Button("Save to Keychain") { save() }
             }
         }
         .formStyle(.grouped)
-        .frame(width: 400)
-        .onAppear { load() }
+        .padding()
+    }
+
+    @ViewBuilder
+    private var labelsTab: some View {
+        LabelEditorView()
+            .padding()
     }
 
     private func load() {

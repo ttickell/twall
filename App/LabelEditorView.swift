@@ -51,9 +51,7 @@ struct LabelEditorView: View {
                 }
                 .disabled(newNumber.isEmpty || newLabel.isEmpty)
             }
-            .padding()
         }
-        .frame(width: 500, height: 400)
         .onAppear { load() }
     }
 

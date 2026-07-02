@@ -4,3 +4,5 @@ labels.json
 /.build/
 /build/
 .DS_Store
+xcuserdata/
+.swiftpm/xcode/xcuserdata/

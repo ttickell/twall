@@ -12,6 +12,7 @@
 		799DCE48CCE660734C5512A0 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783F813518FFABB5B2E08270 /* MessageDetailView.swift */; };
 		7B1A34E5A725076E0CE1FB3A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD4C47EB767AAF024CE76DD /* SettingsView.swift */; };
 		7E303C190ECF3AE42CAA62EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66404FDA7A067481EFBE2150 /* ContentView.swift */; };
+		8098A1BF0525823576D91A0F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93300D3DECFF58B64F0E1877 /* OnboardingView.swift */; };
 		AFC090D0382B4276550B5A1B /* LabelEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1192B189732C370B642C1B5 /* LabelEditorView.swift */; };
 		C947EB47188D0AE2F9466715 /* UnreadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E20E2E78487942BC6EC8A9B /* UnreadStore.swift */; };
 		C9F1ED1459138182E85E829B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD77E19233A9010E19450FD /* App.swift */; };
@@ -26,6 +27,7 @@
 		66404FDA7A067481EFBE2150 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6F301D0120A5DAC4639BF06B /* twall-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "twall-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		783F813518FFABB5B2E08270 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
+		93300D3DECFF58B64F0E1877 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AE8963C0C76016412D2F3231 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D6C601DBA6BB7EEA1EF89EFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E1192B189732C370B642C1B5 /* LabelEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelEditorView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				AE8963C0C76016412D2F3231 /* KeychainStore.swift */,
 				E1192B189732C370B642C1B5 /* LabelEditorView.swift */,
 				783F813518FFABB5B2E08270 /* MessageDetailView.swift */,
+				93300D3DECFF58B64F0E1877 /* OnboardingView.swift */,
 				FCD4C47EB767AAF024CE76DD /* SettingsView.swift */,
 				2E20E2E78487942BC6EC8A9B /* UnreadStore.swift */,
 			);
@@ -151,6 +154,7 @@
 				1735A40944DF1F57EB9A0C33 /* KeychainStore.swift in Sources */,
 				AFC090D0382B4276550B5A1B /* LabelEditorView.swift in Sources */,
 				799DCE48CCE660734C5512A0 /* MessageDetailView.swift in Sources */,
+				8098A1BF0525823576D91A0F /* OnboardingView.swift in Sources */,
 				7B1A34E5A725076E0CE1FB3A /* SettingsView.swift in Sources */,
 				C947EB47188D0AE2F9466715 /* UnreadStore.swift in Sources */,
 			);
