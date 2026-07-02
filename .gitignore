@@ -2,5 +2,5 @@
 /twall
 labels.json
 /.build/
-*.xcodeproj
+/build/
 .DS_Store

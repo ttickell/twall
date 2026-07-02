@@ -5,6 +5,12 @@ public struct Config: Sendable {
     public let authToken: String
     public let labels: [String: String]
 
+    public init(accountSID: String, authToken: String, labels: [String: String]) {
+        self.accountSID = accountSID
+        self.authToken = authToken
+        self.labels = labels
+    }
+
     private static let configDir: URL = {
         FileManager.default.homeDirectoryForCurrentUser
             .appendingPathComponent(".config/twall")
