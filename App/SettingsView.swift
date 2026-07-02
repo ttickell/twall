@@ -3,8 +3,8 @@ import TwallCore
 
 struct SettingsView: View {
     @Environment(AppState.self) private var state
-    @State private var sid: String = ""
-    @State private var token: String = ""
+    @State private var sid = ""
+    @State private var token = ""
     @State private var saveError: String?
     @State private var saved = false
 
@@ -17,7 +17,7 @@ struct SettingsView: View {
                 .tabItem { Label("Labels", systemImage: "tag.fill") }
         }
         .frame(width: 460, height: 300)
-        .onAppear { load() }
+        .onAppear { loadFromEnv() }
     }
 
     @ViewBuilder
@@ -34,7 +34,7 @@ struct SettingsView: View {
                 if saved {
                     Text("Saved").foregroundStyle(.green)
                 }
-                Button("Save to Keychain") { save() }
+                Button("Save to .env") { save() }
             }
         }
         .formStyle(.grouped)
@@ -47,17 +47,25 @@ struct SettingsView: View {
             .padding()
     }
 
-    private func load() {
-        sid = (try? KeychainStore.read(account: "TWILIO_ACCOUNT_SID")) ?? ""
-        token = (try? KeychainStore.read(account: "TWILIO_AUTH_TOKEN")) ?? ""
+    private func loadFromEnv() {
+        let url = Config.envFileURL()
+        guard FileManager.default.fileExists(atPath: url.path),
+              let content = try? String(contentsOf: url, encoding: .utf8) else { return }
+        for line in content.components(separatedBy: .newlines) {
+            let t = line.trimmingCharacters(in: .whitespaces)
+            if t.hasPrefix("TWILIO_ACCOUNT_SID=") {
+                sid = String(t.dropFirst("TWILIO_ACCOUNT_SID=".count))
+            } else if t.hasPrefix("TWILIO_AUTH_TOKEN=") {
+                token = String(t.dropFirst("TWILIO_AUTH_TOKEN=".count))
+            }
+        }
     }
 
     private func save() {
         saveError = nil
         saved = false
         do {
-            try KeychainStore.save(account: "TWILIO_ACCOUNT_SID", value: sid)
-            try KeychainStore.save(account: "TWILIO_AUTH_TOKEN", value: token)
+            try Config.saveCredentials(accountSID: sid, authToken: token)
             saved = true
             Task { await state.setup() }
         } catch {

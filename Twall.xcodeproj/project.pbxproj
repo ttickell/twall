@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		15A424E7FD2DA6C5EDB05F38 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3668A0AA233ABF6A3FDB1CAA /* AppState.swift */; };
-		1735A40944DF1F57EB9A0C33 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8963C0C76016412D2F3231 /* KeychainStore.swift */; };
 		799DCE48CCE660734C5512A0 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783F813518FFABB5B2E08270 /* MessageDetailView.swift */; };
 		7B1A34E5A725076E0CE1FB3A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD4C47EB767AAF024CE76DD /* SettingsView.swift */; };
 		7E303C190ECF3AE42CAA62EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66404FDA7A067481EFBE2150 /* ContentView.swift */; };
@@ -28,7 +27,6 @@
 		6F301D0120A5DAC4639BF06B /* twall-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "twall-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		783F813518FFABB5B2E08270 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
 		93300D3DECFF58B64F0E1877 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		AE8963C0C76016412D2F3231 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D6C601DBA6BB7EEA1EF89EFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E1192B189732C370B642C1B5 /* LabelEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelEditorView.swift; sourceTree = "<group>"; };
 		FCD4C47EB767AAF024CE76DD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 				3668A0AA233ABF6A3FDB1CAA /* AppState.swift */,
 				66404FDA7A067481EFBE2150 /* ContentView.swift */,
 				D6C601DBA6BB7EEA1EF89EFF /* Info.plist */,
-				AE8963C0C76016412D2F3231 /* KeychainStore.swift */,
 				E1192B189732C370B642C1B5 /* LabelEditorView.swift */,
 				783F813518FFABB5B2E08270 /* MessageDetailView.swift */,
 				93300D3DECFF58B64F0E1877 /* OnboardingView.swift */,
@@ -151,7 +148,6 @@
 				C9F1ED1459138182E85E829B /* App.swift in Sources */,
 				15A424E7FD2DA6C5EDB05F38 /* AppState.swift in Sources */,
 				7E303C190ECF3AE42CAA62EE /* ContentView.swift in Sources */,
-				1735A40944DF1F57EB9A0C33 /* KeychainStore.swift in Sources */,
 				AFC090D0382B4276550B5A1B /* LabelEditorView.swift in Sources */,
 				799DCE48CCE660734C5512A0 /* MessageDetailView.swift in Sources */,
 				8098A1BF0525823576D91A0F /* OnboardingView.swift in Sources */,

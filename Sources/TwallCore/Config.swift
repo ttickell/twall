@@ -80,6 +80,64 @@ public struct Config: Sendable {
         try data.write(to: url, options: .atomic)
     }
 
+    public static func envFileURL() -> URL {
+        let urls = [
+            configDir.appendingPathComponent(".env"),
+            URL(fileURLWithPath: ".env"),
+        ]
+        for url in urls {
+            if FileManager.default.fileExists(atPath: url.path) {
+                return url
+            }
+        }
+        return configDir.appendingPathComponent(".env")
+    }
+
+    public static func saveCredentials(accountSID: String, authToken: String) throws {
+        let url = envFileURL()
+        let dir = url.deletingLastPathComponent()
+        if !FileManager.default.fileExists(atPath: dir.path) {
+            try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        }
+
+        var lines: [String] = []
+        if FileManager.default.fileExists(atPath: url.path) {
+            let content = try String(contentsOf: url, encoding: .utf8)
+            lines = content.components(separatedBy: .newlines)
+        }
+
+        var foundSID = false
+        var foundToken = false
+        var updated: [String] = []
+        for line in lines {
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed.hasPrefix("TWILIO_ACCOUNT_SID=") {
+                updated.append("TWILIO_ACCOUNT_SID=\(accountSID)")
+                foundSID = true
+            } else if trimmed.hasPrefix("TWILIO_AUTH_TOKEN=") {
+                updated.append("TWILIO_AUTH_TOKEN=\(authToken)")
+                foundToken = true
+            } else {
+                updated.append(line)
+            }
+        }
+        if !foundSID { updated.append("TWILIO_ACCOUNT_SID=\(accountSID)") }
+        if !foundToken { updated.append("TWILIO_AUTH_TOKEN=\(authToken)") }
+
+        try updated.joined(separator: "\n").write(to: url, atomically: true, encoding: .utf8)
+    }
+
+    public static func hasCredentials() -> Bool {
+        if let sid = ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"], !sid.isEmpty { return true }
+        let url = envFileURL()
+        guard FileManager.default.fileExists(atPath: url.path),
+              let content = try? String(contentsOf: url, encoding: .utf8) else { return false }
+        return content.components(separatedBy: .newlines).contains { line in
+            let t = line.trimmingCharacters(in: .whitespaces)
+            return t.hasPrefix("TWILIO_ACCOUNT_SID=") && t.count > "TWILIO_ACCOUNT_SID=".count
+        }
+    }
+
     public enum ConfigError: Error, LocalizedError {
         case missingSID
         case missingToken

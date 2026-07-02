@@ -1,4 +1,5 @@
 import SwiftUI
+import TwallCore
 
 struct OnboardingView: View {
     @Environment(AppState.self) private var state
@@ -64,8 +65,7 @@ struct OnboardingView: View {
         isSaving = true
         errorMessage = nil
         do {
-            try KeychainStore.save(account: "TWILIO_ACCOUNT_SID", value: sid)
-            try KeychainStore.save(account: "TWILIO_AUTH_TOKEN", value: token)
+            try Config.saveCredentials(accountSID: sid, authToken: token)
             Task {
                 await state.setup()
                 dismiss()

@@ -18,22 +18,11 @@ final class AppState {
     private let unreadStore = UnreadStore()
     private var notifiedSIDs: Set<String> = []
 
-    static var hasCredentials: Bool {
-        ((try? KeychainStore.read(account: "TWILIO_ACCOUNT_SID")) != nil)
-        || (ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"] != nil)
-    }
+    static var hasCredentials: Bool { Config.hasCredentials() }
 
     func setup() async {
         do {
-            let config: Config
-            if let sid = try KeychainStore.read(account: "TWILIO_ACCOUNT_SID"),
-               let token = try KeychainStore.read(account: "TWILIO_AUTH_TOKEN") {
-                let labels = try Config.loadLabels()
-                config = Config(accountSID: sid, authToken: token, labels: labels)
-            } else {
-                config = try Config.load()
-            }
-
+            let config = try Config.load()
             let client = TwilioClient(accountSID: config.accountSID, authToken: config.authToken)
             store = MessageStore(client: client, labels: config.labels)
             try await refresh()
